@@ -20,8 +20,9 @@ function MarketDataPage() {
     const coin = coins.find(coin => coin.code === selectedCoin);
 
     const fetchCoins = async () => {
+        console.log(process.env.API_ENDPOINT);
         try {
-            const response = await fetch("http://localhost:5000/coins");
+            const response = await fetch(`${process.env.API_ENDPOINT}/coins`);
             const data = await response.json();
             localStorage.setItem("coins", JSON.stringify(data));
             dispatch(setCoins(data));
@@ -37,7 +38,7 @@ function MarketDataPage() {
     const fetchMarketData = async () => {
         try {
             sourceRef.current?.close();
-            sourceRef.current = new EventSource(`http://localhost:5000/coins/${selectedCoin}`);
+            sourceRef.current = new EventSource(`${process.env.API_ENDPOINT}/coins/${selectedCoin}`);
             sourceRef.current.onmessage = (event) => {
                 const data : MarketData[] = JSON.parse(event.data);
                 localStorage.setItem("marketData", JSON.stringify(data));
