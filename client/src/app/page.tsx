@@ -20,7 +20,6 @@ function MarketDataPage() {
     const coin = coins.find(coin => coin.code === selectedCoin);
 
     const fetchCoins = async () => {
-        console.log(process.env.API_ENDPOINT);
         try {
             const response = await fetch(`${process.env.API_ENDPOINT}/coins`);
             const data = await response.json();

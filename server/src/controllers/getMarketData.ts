@@ -14,7 +14,6 @@ export default async function getMarketdata(req : Request, res : Response) {
         });
         // If the coin does not exist, return a 404 status code
         if (!coin) {
-            console.log("Coin not found");
             return res.status(404).json({ message: "Coin not found" });
         }
 

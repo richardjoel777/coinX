@@ -20,7 +20,7 @@ export const unsubscribe = (channel: string, res: Response) => {
 };
 
 export const publish = (channel: string, message: any) => {
-  console.log(`Publishing to ${channel}`);
+  // console.log(`Publishing to ${channel}`);
   if (!clients.has(channel)) {
     return;
   }
